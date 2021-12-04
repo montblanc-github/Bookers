@@ -1,29 +1,41 @@
 <h1>Books</h1>
-<tr>
-  <th>Title</th>
-  <th>Body</th>
-</tr>
-
-  <% @books.each do |book| %>
+<table>
+  <thread>
     <tr>
-      <td><%= book.title %></td>
-      <td><%= book.body %></td>
-      <td><%= link_to "Show", book_path(book) %></td>
-      <td><%= link_to "Edit", edit_book_path(book) %></td>
-      <td><%= link_to "Destroy", book_path(book) %></td>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
     </tr>
-  <% end %>
+  </thread>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "Show", book_path(book) %></td>
+        <td><%= link_to "Edit", edit_book_path(book) %></td>
+        <td><%= link_to "Destroy", book_path(book) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <h2>New book</h2>
-<%= form_with model:@book, local:true do |f| %>
+<%= form_with model:@book, local:true, class:"new_book" do |f| %>
 
-  <h4>Title</h4>
-  <%= f.text_field :title %>
+  <div class="field">
+  <label for="book_title">Title</label>
+    <%= f.text_field :title, class: "book_title"%>
+  </div>
 
-  <h4>Body</h4>
-  <%= f.text_area :body %>
+  <div class="field">
+  <label for="book_body">Body</label>
+    <%= f.text_area :body, class: "book_body" %>
+  </div>
 
-  <%= f.submit 'Create Book' %>
-
+  <div class="actions">
+    <%= f.submit 'Create Book' %>
+  </div>
 <% end %>
 
